@@ -158,14 +158,14 @@
          [QBRequest TUploadFile:data
                        fileName:attachment.name
                     contentType:attachment.contentType
-                       isPublic:NO
+                       isPublic:YES
                    successBlock:^(QBResponse * _Nonnull response,
                                   QBCBlob * _Nonnull tBlob)
           {
               
               attachment.ID = tBlob.UID;
               attachment.size = tBlob.size;
-              
+              attachment.url = tBlob.publicUrl;
               __strong typeof(weakOperation) strongOperation = weakOperation;
               strongOperation.attachmentID = tBlob.UID;
               if (completion) {
